@@ -1,5 +1,7 @@
+// para que cargue mis variables de entorno, una vez configuradas mis variables de entorno
+// comenzamos a modificarlas en development
+require('dotenv').config()
 // Update with your config settings.
-
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
@@ -8,10 +10,10 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      host: '127.0.0.1', // ip de mi propio equipo ->BUSCALO EN MI COMPUTADORA.
-      database: 'knexapi', // NOMBRE DE LA BASE DE DATOS DONDE NOS VAMOS A CONECTAR.
-      user: 'postgres', // *** usuario de postgres por defecto el usuario es postgres
-      password: '587Cirsa' // *** contraseña que se coloco en postgres
+      host: process.env.DB_HOST_DEV, // ip de mi propio equipo ->BUSCALO EN MI COMPUTADORA.
+      database: process.env.DB_NAME_DEV, // NOMBRE DE LA BASE DE DATOS DONDE NOS VAMOS A CONECTAR.
+      user: process.env.DB_USER_DEV, // *** usuario de postgres por defecto el usuario es postgres
+      password: process.env.DB_PASS_DEV // *** contraseña que se coloco en postgres
     },
     pool: {
       min: 2,
