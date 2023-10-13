@@ -8,7 +8,7 @@ const homeController = require('../controllers/homeController')
 // y creamos nuestra ruta.
 // cuando haga un get a este enpoint /homes lo que vas  a hacer es ejecutar homeController
 // y de home controler quiero que hagas un create Home que es lo que hicimos en el controlador.
-router.get('/homes', homeController.createHome)
-
+router.post('/homes', homeController.createHome)
+// cuando yo creo algo siempre hacemos un post
 // Exporto el router para despues ponerlo en mi servidor.
 module.exports = router
