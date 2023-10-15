@@ -14,6 +14,15 @@ const create = (body) => {
     // Que quiero que me regrese y en que orden
     .returning(['hose_id', 'title', 'description', 'guests', 'address', 'rental_price', 'fk_user', 'active', 'created_at'])
 }
+// Crear una funcion para buscar para poder ver la lista de casas.
+// Cuando mandamos pedir todos los datos de una api no se necesita mandar en la función ningun parametro
+
+const findAll = () => {
+  return knex
+    .select('*')
+    .from('homes')
+    .where('active', true) // traemos solo los campos a los que no hayamos hecho soft delete.
+}
 module.exports = {
-  create
+  create, findAll
 }

@@ -13,9 +13,20 @@ const createHome = (req, res) => { // cuando hacemos una petición tiene un requ
       res.status(400).send({ message: 'error Created home', error })
     })
 }
+const findAllHome = (req, res) => {
+  ModelHomes.findAll()
+    .then((result) => {
+      // cuando se recibe la data el status code es 200 por defecto
+      res.status(200).send({ result }) // mandar directaemnte el resultado , lista de casas
+    })
+    .catch((error) => { // en caso de haber un error mandar un 400 y el msj de error
+      res.status(400).send({ message: 'error Listing House', error })
+    })
+}
 // exportar en el backend queremos exportar la función createHome.responde que creo un home.
 module.exports = {
-  createHome
+  createHome,
+  findAllHome
 }
 // todo lo anterior seria mi home Controller // simplmente va a responder que creo un home.
 // ya que tengo listo mi controlador necesito una vista que sea capas de llamar a este controlador atravez de una ruta. ya que los archivos que
