@@ -9,7 +9,7 @@ const createHome = (req, res) => { // cuando hacemos una petición tiene un requ
     .then((result) => {
       res.status(201).send({ message: 'Home created', data: result })
     })
-    .catch((error) => {
+    .catch((error) => { // en caso de haber un error mandar un 400 y el msj de error
       res.status(400).send({ message: 'error Created home', error })
     })
 }

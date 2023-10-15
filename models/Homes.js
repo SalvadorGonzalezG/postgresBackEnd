@@ -12,7 +12,7 @@ const create = (body) => {
     .insert(body) // ¿Que datos voy a insertar? y mete esos datos en...
     .into('homes') // ...¿En que tabla? - homes
     // Que quiero que me regrese y en que orden
-    .returning(['house_id', 'title', 'description', 'guest', 'address', 'rental_price', 'fk_user', 'active', 'created_at'])
+    .returning(['hose_id', 'title', 'description', 'guests', 'address', 'rental_price', 'fk_user', 'active', 'created_at'])
 }
 module.exports = {
   create
