@@ -39,9 +39,25 @@ const update = (hoseId, body) => {
     .where({ hose_id: hoseId }) // donde el hose_id sea igual a hoseId es decir el que le pase como parametro
     .returning(['hose_id', 'title', 'description', 'guests', 'address', 'rental_price', 'fk_user', 'active', 'created_at'])
 }
+// Elimina un registro REGISTRO real de la base de tados.documentación de knex
+const destroy = (hoseId) => {
+  return knex
+    .del() // delete
+    .from('homes')
+    .whereWrapped({ hose_id: hoseId })
+}
+// Borrado logico solo cambio Active de true a false es decir no lo quita de la base de datos simplemente no lo muestro.
+const sofDelete = (hoseId) => { // necesitamos cual es el id que bamos a borrar
+  return knex
+    .update({ active: false }) // cambiar un valor de true a homes
+    .from('homes') // de que tabla
+    .where({ hose_id: hoseId }) // donde el hoseId sea igual al que yo mande
+}
 module.exports = {
   create,
   findAll,
   findOne,
-  update
+  update,
+  destroy,
+  sofDelete
 }

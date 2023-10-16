@@ -45,13 +45,35 @@ const updateOneHome = (req, res) => {
       res.status(400).send({ message: 'error update One House', error })
     })
 }
+const destroyOneHome = (req, res) => {
+  ModelHomes.destroy(req.params.hoseId) // si se pasa el parametro de hoseId
+    .then((result) => {
+      // cuando se recibe la data el status code es 200 por defecto
+      res.status(204).send() // no mandar ningun contenifo
+    })
+    .catch((error) => { // en caso de haber un error mandar un 400 y el msj de error
+      res.status(400).send({ message: 'error destroying House', error })
+    })
+}
+const softDeleteOneHome = (req, res) => {
+  ModelHomes.sofDelete(req.params.hoseId) // si se pasa el parametro de hoseId
+    .then((result) => {
+      // cuando se recibe la data el status code es 200 por defecto
+      res.status(204).send()
+    })
+    .catch((error) => { // en caso de haber un error mandar un 400 y el msj de error
+      res.status(400).send({ message: 'error destroying House', error })
+    })
+}
 
 // exportar en el backend queremos exportar la función createHome.responde que creo un home.
 module.exports = {
   createHome,
   findAllHome,
   findOneHome,
-  updateOneHome
+  updateOneHome,
+  destroyOneHome,
+  softDeleteOneHome
 }
 // todo lo anterior seria mi home Controller // simplmente va a responder que creo un home.
 // ya que tengo listo mi controlador necesito una vista que sea capas de llamar a este controlador atravez de una ruta. ya que los archivos que
