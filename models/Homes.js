@@ -23,6 +23,25 @@ const findAll = () => {
     .from('homes')
     .where('active', true) // traemos solo los campos a los que no hayamos hecho soft delete.
 }
+const findOne = (hoseId) => {
+  return knex
+    .select(['hose_id', 'title', 'description', 'guests', 'address', 'rental_price', 'fk_user', 'active', 'created_at'])
+    .from('homes')
+    .where({ hose_id: hoseId })
+    .where('active', true)
+}
+// Actualizar casas para esto es necesario saber 2 cosas cual es el houseId y el  body, la data
+// Esto actualizara en el body la información que le mandes al hoseID
+const update = (hoseId, body) => {
+  return knex
+    .update(body) // hacemos el update de body. hacer el update con la información que le pase.
+    .from('homes') // traemos los datos de la tabla homes
+    .where({ hose_id: hoseId }) // donde el hose_id sea igual a hoseId es decir el que le pase como parametro
+    .returning(['hose_id', 'title', 'description', 'guests', 'address', 'rental_price', 'fk_user', 'active', 'created_at'])
+}
 module.exports = {
-  create, findAll
+  create,
+  findAll,
+  findOne,
+  update
 }

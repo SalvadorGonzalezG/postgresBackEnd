@@ -9,7 +9,9 @@ const homeController = require('../controllers/homeController')
 // cuando haga un get a este enpoint /homes lo que vas  a hacer es ejecutar homeController
 // y de home controler quiero que hagas un create Home que es lo que hicimos en el controlador.
 router.post('/homes', homeController.createHome)
-router.get('/homes', homeController.findAllHome)
+router.get('/homes', homeController.findAllHome) // hacemos el cambio a get para mandar llamar y mandamos llamar al findAllHomes
+router.get('/homes/:hoseId', homeController.findOneHome)
+router.patch('/homes/:hoseId', homeController.updateOneHome) // metodo patch
 // cuando yo creo algo siempre hacemos un post
 // Exporto el router para despues ponerlo en mi servidor.
 module.exports = router
